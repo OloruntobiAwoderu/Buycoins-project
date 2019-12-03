@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import TableList from "./component/tableList";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      coinData: []
+    };
+  }
+  componentDidMount(){
+    fetch(`https://api.coinlore.com/api/tickers/?start=0&limit=10`)
+    .then(response => response.json())
+    .then(results => {
+      console.log(results)
+      this.setState({
+        coinData: results.data
+      })
+    })
+  
+  }
+  handleClick = () => {
+   let i = 10
+    fetch(`https://api.coinlore.com/api/tickers/?start=${i++}&limit=10`)
+    .then(response => response.json())
+    .then(results => {
+      console.log(results)
+      this.setState({
+        coinData: results.data
+      })
+    })
+  }
+  render() {
+    return <div className="App card">
+      <TableList results={this.state.coinData} />
+      <button onClick={this.handleClick}>Nexxt</button>
+    </div>;
+  }
 }
 
 export default App;
