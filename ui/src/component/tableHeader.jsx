@@ -6,10 +6,10 @@ const TableHeader = ({ results }) => {
     <table>
       <thead>
         <tr style={{ backgroundColor:"#f2f2f2"}}>
-          <th>💰 Coin</th>
-          <th>📄 Code</th>
-          <th>🤑 Price</th>
-          <th>📉 Total Supply</th>
+          <th><span>💰 Coin</span></th>
+          <th><span>📄 Code</span></th>
+          <th><span>🤑 Price</span></th>
+          <th><span>📉 Total Supply</span></th>
         </tr>
       </thead>
       <tbody>
