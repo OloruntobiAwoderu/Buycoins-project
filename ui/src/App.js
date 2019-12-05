@@ -1,15 +1,17 @@
 import React from "react";
 import "./App.css";
-import TableList from "./component/tableList";
+import TableList from "./component/desktop/tableList";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import TableLiist from "./component/mobile/tableList";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       coinData: [],
-      next: 0
+      next: 0,
+      isDesktop: false
     };
   }
   componentDidMount() {
@@ -20,6 +22,11 @@ class App extends React.Component {
           coinData: results.data
         });
       });
+    this.updatePredicate();
+    window.addEventListener("resize", this.updatePredicate);
+  }
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updatePredicate);
   }
   handleClick = () => {
     fetch(
@@ -48,18 +55,20 @@ class App extends React.Component {
       });
   };
   ButtonRender() {
-    const { next } = this.state;
+    const { next, coinData } = this.state;
     if (next === 0) {
       return (
-        <button onClick={this.handleClick} className="button">
-          Next{"  "}
-          <FontAwesomeIcon icon={faArrowRight} />
-        </button>
+        <div className="firstButton">
+          <button onClick={this.handleClick} className="button">
+            Next{"   "}
+            <FontAwesomeIcon icon={faArrowRight} />
+          </button>
+        </div>
       );
     } else if (next > 0) {
       return (
         <div className="ButtonName">
-          <button onClick={this.handleClick} className="button button-1"> 
+          <button onClick={this.handlePrevClick} className="button button-1">
             <FontAwesomeIcon icon={faArrowLeft} />
             {"  "}Previous
           </button>
@@ -67,17 +76,26 @@ class App extends React.Component {
             Next{"  "}
             <FontAwesomeIcon icon={faArrowRight} />
           </button>
-          
         </div>
       );
-    } else if (next > 2960) {
+    } else if (next >= 2960) {
       return <button onClick={this.handlePrevClick}>prev</button>;
     }
   }
+  updatePredicate = () => {
+    this.setState({ isDesktop: window.innerWidth > 600 });
+  };
   render() {
+    const isDesktop = this.state.isDesktop;
+
     return (
       <div className="App card">
-        <TableList results={this.state.coinData} />
+        {isDesktop ? (
+          <TableList results={this.state.coinData} />
+        ) : (
+          <TableLiist results={this.state.coinData} />
+        )}
+
         {this.ButtonRender()}
       </div>
     );
