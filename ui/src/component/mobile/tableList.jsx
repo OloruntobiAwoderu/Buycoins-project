@@ -1,7 +1,7 @@
 import React from "react";
 import Table from "./table";
 
-const TableLiist = ({ results }) => {
+const MobileTableList = ({ results }) => {
   return (
     <table>
       {results.map(result => (
@@ -11,4 +11,4 @@ const TableLiist = ({ results }) => {
   );
 };
 
-export default TableLiist;
+export default MobileTableList;

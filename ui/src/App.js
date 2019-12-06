@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
-import TableList from "./component/desktop/tableList";
+import DesktopTableList from "./component/desktop/tableList";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import TableLiist from "./component/mobile/tableList";
+import MobileTableList from "./component/mobile/tableList";
 
 class App extends React.Component {
   constructor(props) {
@@ -91,9 +91,9 @@ class App extends React.Component {
     return (
       <div className="App card">
         {isDesktop ? (
-          <TableList results={this.state.coinData} />
+          <DesktopTableList results={this.state.coinData} />
         ) : (
-          <TableLiist results={this.state.coinData} />
+          <MobileTableList results={this.state.coinData} />
         )}
 
         {this.ButtonRender()}

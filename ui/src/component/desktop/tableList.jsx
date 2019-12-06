@@ -3,7 +3,7 @@ import React from 'react';
 
 import TableHeader from './tableHeader'
 
-const TableList = ({ results }) => {
+const DesktopTableList = ({ results }) => {
     
     return ( <div className="hide-desktop">
         <TableHeader results={results}  />
@@ -11,4 +11,4 @@ const TableList = ({ results }) => {
     </div> );
 }
  
-export default TableList;
+export default DesktopTableList;
