@@ -3,10 +3,10 @@ import React from "react";
 const Table = ({ result }) => {
   return (
     <tr className="desktop">
-      <th>{result.name}</th>
-      <th>{result.symbol}</th>
-      <th>${result.price_usd}</th>
-      <th>{result.tsupply}</th>
+      <td>{result.name}</td>
+      <td>{result.symbol}</td>
+      <td>${result.price_usd}</td>
+      <td>{result.tsupply}</td>
     </tr>
   );
 };
