@@ -65,6 +65,11 @@ class App extends React.Component {
           </button>
         </div>
       );
+    } else if (next >= 2950) {
+      return <button onClick={this.handlePrevClick} className="button button-1">
+      <FontAwesomeIcon icon={faArrowLeft} />
+      {"  "}Previous
+    </button>
     } else if (next > 0) {
       return (
         <div className="ButtonName">
@@ -78,8 +83,6 @@ class App extends React.Component {
           </button>
         </div>
       );
-    } else if (next >= 2960) {
-      return <button onClick={this.handlePrevClick}>prev</button>;
     }
   }
   updatePredicate = () => {
