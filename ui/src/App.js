@@ -55,7 +55,7 @@ class App extends React.Component {
       });
   };
   ButtonRender() {
-    const { next, coinData } = this.state;
+    const { next } = this.state;
     if (next === 0) {
       return (
         <div className="firstButton">
